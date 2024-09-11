@@ -5,138 +5,213 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurant Registration with Map</title>
   <style>
-    /* Global Style dkjsidgvskjdbvksbvs */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+    /* Beautified CSS */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-h2, h3 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-}
+    h2, h3 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-.form-container {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 650px;
-  width: 100%;
-  margin: 20px;
-}
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 650px;
+      width: 100%;
+      margin: 20px;
+    }
 
-/* Form Step Styling */
-.form-step {
-  display: none;
-}
+    .form-step {
+      display: none;
+    }
 
-.form-step.active {
-  display: block;
-}
+    .form-step.active {
+      display: block;
+    }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-}
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
 
-input[type="text"], input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
+    input[type="text"], input[type="file"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
 
-input[type="text"]:focus, input[type="file"]:focus {
-  border-color: #007bff;
-  outline: none;
-}
+    input[type="text"]:focus, input[type="file"]:focus, input[type="tel"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
 
-input[type="file"] {
-  padding: 8px;
-}
+    button {
+      padding: 12px 25px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
 
-button {
-  padding: 12px 25px;
-  border: none;
-  background-color: #28a745;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
+    button:hover {
+      background-color: #218838;
+    }
 
-button:hover {
-  background-color: #218838;
-}
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
+    button + button {
+      margin-left: 10px;
+    }
 
-button + button {
-  margin-left: 10px;
-}
+    .map-container {
+      margin-top: 20px;
+    }
 
-/* Map Section */
-.map-container {
-  margin-top: 20px;
-}
+    #map {
+      height: 350px;
+      width: 100%;
+      margin-top: 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+    }
 
-#map {
-  height: 350px;
-  width: 100%;
-  margin-top: 15px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-}
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
 
-/* Button Container */
-.button-container {
-  text-align: center;
-  margin-top: 30px;
-}
+    button.detect-location {
+      background-color: #007bff;
+    }
 
-/* Detect Location Button */
-button.detect-location {
-  background-color: #007bff;
-}
+    button.detect-location:hover {
+      background-color: #0056b3;
+    }
 
-button.detect-location:hover {
-  background-color: #0056b3;
-}
+    /* Contact Section Styles */
+    .contact-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
 
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 768px) {
-  .form-container {
-    padding: 20px;
-  }
+    .contact-section h4 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #333;
+      font-weight: bold;
+    }
 
-  button {
-    width: 100%; 
-    margin-bottom: 10px;
-  }
+    .contact-section .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
 
-  button + button {
-    margin-left: 0;
-  }
-}
+    .input-group input {
+      padding-left: 50px;
+      border-radius: 5px;
+    }
 
+    .input-group span {
+      position: absolute;
+      left: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .input-group .verify-btn {
+      margin-left: 10px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-group .verify-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* OTP Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      width: 100%;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media screen and (max-width: 768px) {
+      .form-container {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button + button {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -154,7 +229,7 @@ button.detect-location:hover {
       <input type="text" id="restaurant-address" name="restaurant-address" placeholder="Type address manually or use detect location"><br><br>
 
       <!-- Detect Location Button -->
-      <button onclick="detectLocation()">Detect Location</button>
+      <button class="detect-location" onclick="detectLocation()">Detect Location</button>
 
       <!-- Map Section -->
       <div class="map-container">
@@ -163,6 +238,26 @@ button.detect-location:hover {
       </div>
       <input type="hidden" id="latitude" name="latitude">
       <input type="hidden" id="longitude" name="longitude">
+      
+      <!-- Contact Number Section -->
+      <div class="contact-section">
+        <h4>Contact Numbers</h4>
+
+        <!-- Mobile Number with Verify Button -->
+        <label for="mobile-number">Mobile Number:</label>
+        <div class="mobile-input-group">
+          <span>+91</span>
+          <input type="tel" id="mobile-number" name="mobile-number" placeholder="Enter mobile number" required>
+          <button type="button" id="verifyBtn" onclick="openOTPModal()">Verify</button>
+        </div>
+
+        <!-- Landline Number -->
+        <label for="landline-number">Landline Number (Optional):</label>
+        <div class="mobile-input-group">
+          <span>+91</span>
+          <input type="tel" id="landline-number" name="landline-number" placeholder="Enter landline number (optional)">
+        </div>
+      </div>
     </div>
 
     <!-- Step 2: Legal Documentation -->
@@ -189,6 +284,15 @@ button.detect-location:hover {
     </div>
   </div>
 
+  <!-- OTP Modal -->
+  <div id="otpModal" class="modal">
+    <div class="modal-content">
+      <h4>Enter OTP</h4>
+      <input type="text" id="otp" placeholder="Enter OTP">
+      <button onclick="verifyOTP()">Submit</button>
+    </div>
+  </div>
+
   <script>
     let currentStep = 0;
     const steps = document.querySelectorAll('.form-step');
@@ -198,24 +302,18 @@ button.detect-location:hover {
       steps[currentStep].classList.remove('active');
       currentStep += direction;
 
-      // Show/hide steps based on current step
       steps[currentStep].classList.add('active');
       
-      // Enable/disable Previous button
       document.getElementById('prevBtn').disabled = currentStep === 0;
-
-      // Change button text on final step
       document.getElementById('nextBtn').textContent = currentStep === steps.length - 1 ? 'Submit' : 'Next';
 
-      // Submit form on last step
       if (currentStep === steps.length) {
         alert('Form submitted successfully!');
       }
     }
 
-    // Initialize and add the map
     function initMap() {
-      const defaultLocation = { lat: 37.7749, lng: -122.4194 }; // Default location (San Francisco)
+      const defaultLocation = { lat: 37.7749, lng: -122.4194 };
       map = new google.maps.Map(document.getElementById("map"), {
         zoom: 12,
         center: defaultLocation,
@@ -224,21 +322,18 @@ button.detect-location:hover {
       marker = new google.maps.Marker({
         position: defaultLocation,
         map: map,
-        draggable: true, // Make the marker draggable
+        draggable: true,
       });
 
-      // Initialize Geocoder
       geocoder = new google.maps.Geocoder();
 
-      // Update latitude and longitude values when marker is dropped
       google.maps.event.addListener(marker, 'dragend', function(event) {
         document.getElementById("latitude").value = event.latLng.lat();
         document.getElementById("longitude").value = event.latLng.lng();
-        getAddress(event.latLng.lat(), event.latLng.lng()); // Update address based on new location
+        getAddress(event.latLng.lat(), event.latLng.lng());
       });
     }
 
-    // Detect user location
     function detectLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -247,15 +342,11 @@ button.detect-location:hover {
             lng: position.coords.longitude,
           };
 
-          // Set marker and map to user's location
           marker.setPosition(userLocation);
           map.setCenter(userLocation);
 
-          // Update hidden input fields with detected latitude and longitude
           document.getElementById("latitude").value = userLocation.lat;
           document.getElementById("longitude").value = userLocation.lng;
-
-          // Fetch the address and update the input field
           getAddress(userLocation.lat, userLocation.lng);
         }, function() {
           alert("Geolocation failed. Please enter your address manually.");
@@ -265,13 +356,12 @@ button.detect-location:hover {
       }
     }
 
-    // Function to get address from latitude and longitude
     function getAddress(lat, lng) {
       const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
       geocoder.geocode({ location: latlng }, function(results, status) {
         if (status === "OK") {
           if (results[0]) {
-            document.getElementById("restaurant-address").value = results[0].formatted_address; // Fill in the address input
+            document.getElementById("restaurant-address").value = results[0].formatted_address;
           } else {
             alert("No results found");
           }
@@ -279,6 +369,23 @@ button.detect-location:hover {
           alert("Geocoder failed due to: " + status);
         }
       });
+    }
+
+    function openOTPModal() {
+      document.getElementById("otpModal").style.display = "flex";
+    }
+
+    function verifyOTP() {
+      const otp = document.getElementById("otp").value;
+      if (otp === "1234") {
+        document.getElementById("otpModal").style.display = "none";
+        const verifyBtn = document.getElementById("verifyBtn");
+        verifyBtn.textContent = "Verified";
+        verifyBtn.disabled = true;
+        verifyBtn.style.backgroundColor = "#28a745";
+      } else {
+        alert("Invalid OTP");
+      }
     }
   </script>
 
